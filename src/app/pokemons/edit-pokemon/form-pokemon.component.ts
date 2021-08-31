@@ -7,6 +7,7 @@ import {
   ActivatedRoute,
   Router
 } from "@angular/router";
+import { PokemonsService } from "../pokemons.services";
 
 @Component({
   selector: 'form-pokemon',
@@ -20,17 +21,17 @@ export class FormPokemonComponent implements OnInit {
   types: Array < String > = [];
 
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private pokemonsService: PokemonsService) {
     this.types = this.getPokemonTypes();
   }
 
   ngOnInit() {
-
+    this.types = this.pokemonsService.getPokemonTypes();
   }
 
   onSubmit(): void {
-    let link = ['/pokemon', this.pokemon.id]
-    this.router.navigate([link]);
+    let link = ['/pokemon/', this.pokemon.id]
+    this.router.navigate(link);
   }
 
   getPokemonTypes(): String[] {
@@ -40,13 +41,14 @@ export class FormPokemonComponent implements OnInit {
   // methode appelée lorsque l'utilisateur ajoute ou retire un type au pokemon
 
   selectType($event: any, type: String) {
+
     let checked = $event.target.checked;
     if (checked) {
       this.pokemon.types.push(type)
     } else {
       let index = this.pokemon.types.indexOf(type);
       if (index > -1) {
-        this.pokemon.types.slice(index, 1)
+        this.pokemon.types.splice(index, 1)
       }
     }
   }

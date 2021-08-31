@@ -25,14 +25,13 @@ import { PokemonsService } from "../pokemons.services";
 
 export class EditPokemonComponent implements OnInit {
 
-  pokemons: Pokemon[];
+
   pokemon: any = null;
 
   constructor(private route: ActivatedRoute, private router: Router, private pokemonsService: PokemonsService) {
-    this.pokemons = [];
+
   }
   ngOnInit() {
-    this.pokemons = POKEMON;
     let id = this.route.snapshot.params.id;
     this.pokemon = this.pokemonsService.getPokemon(id);
   }
