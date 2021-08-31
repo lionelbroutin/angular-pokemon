@@ -1,0 +1,7 @@
+<h1>Edition {{ pokemon?.name }}</h1>
+
+<p class="center">
+  <img *ngIf="pokemon" [src]="pokemon.picture" alt="" />
+</p>
+
+<form-pokemon [pokemon]="pokemon"></form-pokemon>

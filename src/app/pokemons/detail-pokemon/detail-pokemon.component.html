@@ -1,0 +1,56 @@
+<a href="/">Accueil</a>
+
+<div *ngIf="pokemon" class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ pokemon.name }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="pokemon.picture" alt="" />
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td>
+                  <strong>{{ pokemon.name }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Points de vie</td>
+                <td>
+                  <strong>{{ pokemon.hp }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td>
+                  <strong>{{ pokemon.cp }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Types</td>
+                <td>
+                  <span *ngFor="let type of pokemon.type">{{ type }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Date de création</td>
+                <td>
+                  {{ pokemon.created | date: "dd/MM/yyyy" }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goBack()" class="btn">Aller en arrrière</a>
+          <a (click)="goEdit(pokemon)" class="btn">Modifier</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4 *ngIf="!pokemon" class="center">Pas de pokemon</h4>
